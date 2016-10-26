@@ -27,7 +27,7 @@ export function streamReducer(state = {name: 'Lightping', keywords: {}, bounding
 export function logoReducer(state = 'img/lightping.png', {type, logo}) {
   switch (type) {
     case events.setLogo: {
-      return logo
+      return logo || state;
     }
     default: {
       return state;

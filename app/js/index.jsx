@@ -13,11 +13,12 @@ import Wall from './Wall.jsx';
 import LastTweet from './LastTweet.jsx';
 import {parse as parseQuery} from 'querystring';
 import {viewportReducer, streamReducer, logoReducer} from './reducers';
-import {resize, setStream} from './actions';
+import {resize, setStream, setLogo} from './actions';
 
 const params = parseQuery(document.location.search.replace('?', ''));
 const columns = parseInt(params.columns, 10) || 3;
 const lines = parseInt(params.lines, 10) || 3;
+const logo = params.logo;
 
 const streamId = window.location.hash.replace(/#/g, '');
 const hostname = window.location.hostname;
@@ -41,6 +42,7 @@ const store = createStore(combineReducers(reducers), undefined, compose(
 
 store.dispatch(setSize(columns * lines));
 store.dispatch(resize(columns));
+store.dispatch(setLogo(logo));
 
 setTimeout(() => {
   info()

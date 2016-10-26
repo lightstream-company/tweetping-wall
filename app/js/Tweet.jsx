@@ -6,12 +6,13 @@ import formatTweetText from './formatter';
 const Tweet = (props) => {
   const userUrl = `https://twitter.com/${props.user.name}`;
   const tweetUrl = userUrl + '/status/' + props.id;
-  
+
   const text = formatTweetText(props);
   
   const profilePicture = props.pictureSize ?
     props.user.profile_picture.replace('_normal', '_' + props.pictureSize) :
     props.user.profile_picture;
+  const socialIcon = `img/${props._source}.png`;
 
   function getTweetText() {
     return {__html: text};
@@ -28,7 +29,9 @@ const Tweet = (props) => {
         <div className="content-text">
           <div className="fade-text"></div>
           <div className="tweet-text">
-            <p className="name"><a href={userUrl} target="_blank">@{props.user.name}</a>
+            <p className="name">
+              <img className="social-icon" src={socialIcon} />
+              <a href={userUrl} target="_blank">@{props.user.name}</a>
             </p>
             <p className="text" dangerouslySetInnerHTML={getTweetText()}/>
           </div>

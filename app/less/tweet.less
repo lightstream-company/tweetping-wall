@@ -51,7 +51,8 @@
         .tweet-text {
           width: 100%;
           border-left: @borderColor 1px solid;
-          min-height: @tweetHeight - 2*@tweetPadding;
+          height: @tweetHeight - 2*@tweetPadding;
+          overflow: hidden;
           p {
             font-size: @textSize;
             margin: 0 @tweetPadding;
@@ -60,6 +61,11 @@
           .name {
             line-height: @nameHeight;
             font-weight: 600;
+
+            img {
+              height: @textSize;
+              margin-right: @textSize/2
+            }
           }
 
           @textHeight: @tweetHeight - 2*@tweetPadding - @nameHeight;
