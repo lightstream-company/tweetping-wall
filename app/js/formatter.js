@@ -1,15 +1,18 @@
 'use strict';
 
-export default function formatTweetText(originalText, entities) {
-  var text = entities.hashtags.reduce((text, hashtag) =>
+export default function formatTweetText(post) {
+  const hashtags = post.tags || [];
+  var text = hashtags.reduce((text, hashtag) =>
       text.replace('#' + hashtag.text, `<span class="hashtag">#${hashtag.text}</span>`)
-    , originalText);
+    , post.text);
 
-  text = entities.user_mentions.reduce((text, mention) =>
+  const userMentions = post.mentions || [];
+  text = userMentions.reduce((text, mention) =>
       text.replace('@' + mention.screen_name, `<span class="hashtag">@${mention.screen_name}</span>`)
     , text);
 
-  text = entities.urls.reduce((text, url) =>
+  const urls = post.urls || [];
+  text = urls.reduce((text, url) =>
       text.replace(url.url, `<span class="hashtag"><a href="${url.expanded_url}" target="_blank">${url.display_url}</a></span>`)
     , text);
 

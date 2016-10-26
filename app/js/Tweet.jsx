@@ -7,7 +7,7 @@ const Tweet = (props) => {
   const userUrl = `https://twitter.com/${props.user.name}`;
   const tweetUrl = userUrl + '/status/' + props.id;
   
-  const text = formatTweetText(props.text, props.entities);
+  const text = formatTweetText(props);
   
   const profilePicture = props.pictureSize ?
     props.user.profile_picture.replace('_normal', '_' + props.pictureSize) :
@@ -44,7 +44,9 @@ Tweet.propTypes = {
   bootstrapOffset: PropTypes.string,
   pictureSize: PropTypes.string,
   user: PropTypes.object.isRequired,
-  entities: PropTypes.object.isRequired,
+  mentions: PropTypes.array,
+  tags: PropTypes.array,
+  urls: PropTypes.array,
   text: PropTypes.string,
   _source: PropTypes.string
 };
